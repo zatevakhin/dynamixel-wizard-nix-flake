@@ -22,7 +22,6 @@
         fontconfig
         freetype
         zlib
-        mesa
         libglvnd
         xorg.libxcb
         xorg.libX11
@@ -30,6 +29,7 @@
         xorg.libXrender
         libxkbcommon
         dbus
+        udev
         stdenv.cc.cc.lib
       ];
 
@@ -39,7 +39,7 @@
 
         src = pkgs.fetchurl {
           url = "https://www.dropbox.com/s/csawv9qzl8m8e0d/DynamixelWizard2Setup-x86_64?dl=1";
-          sha256 = "sha256-lHaiUk8c9OluakuQAFxOzpObfVgG13XWH6RuNq6iqjc="; # ← replace once
+          sha256 = "sha256-lHaiUk8c9OluakuQAFxOzpObfVgG13XWH6RuNq6iqjc=";
           executable = true;
           curlOptsList = ["--location"];
         };
