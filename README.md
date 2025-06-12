@@ -2,7 +2,7 @@
 
 Reproducible, one‑command install of [**Dynamixel Wizard 2**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/#software-installation) on any Linux host that has Nix with flakes enabled.
 
-## Requirements
+## Requirements
 
 | what         | version                                                  |
 | ------------ | -------------------------------------------------------- |
@@ -14,8 +14,17 @@ Reproducible, one‑command install of [**Dynamixel Wizard 2**](https://emanua
 ## What about Mac
 - IDC (but it easy to do)
 
-## Quick start
+## Quick start
 
+```bash
+$ nix run github:zatevakhin/dynamixel-wizard-nix-flake
+
+```
+ Pin specific versions (if there will be one)
+```bash
+$ nix run "github:zatevakhin/dynamixel-wizard-nix-flake?ref=<tag|branch|rev>"
+```
+or
 ```bash
 # clone the repo
 $ git clone <this‑repo> wiz2-flake && cd wiz2-flake
@@ -28,7 +37,7 @@ Nix builds the `dynamixel-wizard2` derivation (first run \~ 1 min), patches 
 its libraries, then launches the program.
 
 
-## Developer shell
+## Developer shell
 
 ```bash
 $ nix develop      # drop into a shell with the package in $PATH
@@ -39,7 +48,7 @@ The dev‑shell is handy for debugging the flake itself or running the wizard
 alongside other dev tools.
 
 
-## Flake outputs
+## Flake outputs
 
 | output                           | what you get                           |
 | -------------------------------- | -------------------------------------- |
@@ -48,9 +57,9 @@ alongside other dev tools.
 | `devShells.x86_64-linux.default` | shell with the package + build tools   |
 
 
-## Updating to a new Robotis release
+## Updating to a new Robotis release
 
-1. Download the new `.run` installer from [Robotis website](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/#software-installation).
+1. Download the new installer from [Robotis website](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/#software-installation).
 2. In *flake.nix* bump
 
    ```nix
@@ -68,7 +77,7 @@ alongside other dev tools.
 4. Paste that hash back into *flake.nix* → rebuild → done.
 
 
-## How it works (under the hood)
+## How it works (under the hood)
 
 * Downloads the vendor installer (Qt Installer Framework) from [download page for Linux](https://www.robotis.com/service/download.php?no=1671),
 then it redirects on [Dropbox](https://www.dropbox.com/s/csawv9qzl8m8e0d/DynamixelWizard2Setup-x86_64) where binary Linux installer is located.
@@ -80,7 +89,7 @@ then it redirects on [Dropbox](https://www.dropbox.com/s/csawv9qzl8m8e0d/Dynamix
   works under X11 and Wayland (via XWayland).
 
 
-## Troubleshooting
+## Troubleshooting
 
 | symptom                                    | fix                                                                                                              |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
@@ -88,7 +97,7 @@ then it redirects on [Dropbox](https://www.dropbox.com/s/csawv9qzl8m8e0d/Dynamix
 | USB port not detected                      | ensure your user is in the `dialout` group or run with `sudo`                                                    |
 
 
-## License & Disclaimer
+## License & Disclaimer
 
 Dynamixel Wizard 2 is © Robotis. This flake only automates the **installer**
 Redistribution of the binary remains subject to Robotis' licence terms.
